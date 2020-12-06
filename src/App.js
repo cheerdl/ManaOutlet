@@ -12,10 +12,6 @@ import { BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
 import history from './history';
 import Login from "./components/login";
 import Second from './components/secondPage';
-import branch1 from './components/branch1';
-import branch2 from './components/branch2';
-import branch3 from './components/branch3';
-import allBranch from './components/allBranch';
 
 function App() {
   return (<Router history ={history}>
@@ -23,11 +19,7 @@ function App() {
     <Switch>
       <Route exact path='/' component ={Login} />
       <Route path='/login' component ={Login} />
-      <Route path="/secondPage" component={Second} />
-      <Route path="/กรุงเทพ" component={branch1} />
-      <Route path="/ศาลายา" component={branch2} />
-      <Route path="/กัมพูชา" component={branch3} />
-      <Route path="/ผลรวมยอดขาย" component={allBranch} />
+      <Route path="/pages" component={Second} />
     </Switch>
 </div>
 </Router>

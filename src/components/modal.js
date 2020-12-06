@@ -14,6 +14,7 @@ class Modal extends Component {
             transfer: '',
             all: '',
             allpos: '',
+            id: ''
         }
     }
 
@@ -24,6 +25,7 @@ class Modal extends Component {
             transfer: nextProps.transfer,
             all: nextProps.all,
             allpos: nextProps.allpos,
+            id: nextProps.id
         });
     }
 
@@ -46,13 +48,20 @@ class Modal extends Component {
 
     handleSave() {
         const item = this.state;
-        this.props.saveModalDetails(item)
+        this.props.saveModalDetails({
+            date: this.state.date,
+            cash: parseFloat(this.state.cash, 10),
+            transfer: parseFloat(this.state.transfer, 10),
+            all: parseFloat(this.state.all, 10),
+            allpos: parseFloat(this.state.allpos, 10),
+            id: this.state.id
+        })
     }
 
     render() {
         return (
             <div className="modal fade" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div className="modal-dialog" role="document" style={{marginTop: 100}}>
+                <div className="modal-dialog" role="document">
                     <div className="modal-content">
                         <div className="modal-header">
                             <h5 className="modal-title" id="exampleModalLabel">แก้ไข</h5>

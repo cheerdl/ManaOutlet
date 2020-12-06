@@ -1,29 +1,32 @@
 import React, { Component } from 'react';
 import Modal from './modal.js';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableHead from '@material-ui/core/TableHead';
+
+import {
+  CircularProgress,
+  TableCell,
+} from '@material-ui/core'
+
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import axios from 'axios';
+
 class List extends Component {
+  state = {
+    isLoading: true,
+    requiredItem: 0,
+    brochure: []
+  }
+
   constructor(props) {
     super(props);
     this.replaceModalItem = this.replaceModalItem.bind(this);
     this.saveModalDetails = this.saveModalDetails.bind(this);
-    this.state = {
-      isLoading: true,
-      requiredItem: 0,
-      brochure: [
-      ]
-    }
   }
 
   componentWillMount() {
-    this.test();
+    this.fetchData();
   }
 
-  test() {
+  fetchData() {
     axios.get('https://billbillbot.herokuapp.com/api/v1/bill', {
       headers: {
         Authorization: "Bearer "+localStorage.getItem("token")
@@ -64,7 +67,6 @@ class List extends Component {
     tempbrochure[requiredItem] = item;
     console.log(tempbrochure[requiredItem]);
     this.setState({ brochure: tempbrochure });
-    //window.location.reload();
     axios({
       url: 'https://billbillbot.herokuapp.com/api/v1/bill',
       method: 'PUT',
@@ -78,7 +80,8 @@ class List extends Component {
         Authorization: 'Bearer '+localStorage.getItem("token")
       }
     }).then((result) => {
-      console.log(result)
+      window.location.reload()
+      // console.log(result)
     })
   }
 
@@ -90,8 +93,8 @@ class List extends Component {
 
   render() {
     const {isLoading} = this.state;
-    if(isLoading){
-      return (<p>Loading</p>)
+    if (isLoading) {
+      return (<CircularProgress/>)
     }
     else{
       const brochure = this.state.brochure.map((item, index) => {
@@ -120,9 +123,9 @@ class List extends Component {
       let modalData = this.state.brochure[requiredItem];
       return (
         <div>
-          <h3 style={{fontWeight: "bold"}}>สาขา ซีคอนบางแค</h3>
-          <table class="table">
-            <thead class="thead-dark">
+          <h3 style={{fontWeight: "bold"}}>สาขา {this.props.branchName}</h3>
+          <table className="table">
+            <thead className="thead-dark">
               <th>วันที่</th>
               <th>เงินสด</th>
               <th>เงินโอน</th>

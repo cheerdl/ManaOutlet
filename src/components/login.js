@@ -7,8 +7,6 @@ import Button from "react-bootstrap/Button";
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import useRouter from '../hooks/useRouter';
-import Spinner from 'react-bootstrap/Spinner'
-
 
 export default function Login() {
   const [username, setUsername] = useState("");
@@ -38,7 +36,6 @@ export default function Login() {
       localStorage.setItem('token', token);
       console.log(token);
       goTo('/secondPage')();
-
     }).catch((error) => {
       console.log(error)
       alert("ชื่อผู้ใช้หรือรหัสผ่านผิด กรุณากรอกใหม่")

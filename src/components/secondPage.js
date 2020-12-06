@@ -1,33 +1,55 @@
-import React from "react";
+import React from "react"
+
 import PropTypes from "prop-types";
-import AppBar from "@material-ui/core/AppBar";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import Divider from "@material-ui/core/Divider";
-import Drawer from "@material-ui/core/Drawer";
-import Hidden from "@material-ui/core/Hidden";
-import IconButton from "@material-ui/core/IconButton";
-import InboxIcon from "@material-ui/icons/MoveToInbox";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText";
 
-import MenuIcon from "@material-ui/icons/Menu";
-import StorefrontIcon from '@material-ui/icons/Storefront';
-import StoreIcon from '@material-ui/icons/Store';
-import ReceiptIcon from '@material-ui/icons/Receipt';
+import {
+  AppBar,
+  CssBaseline,
+  Divider,
+  Drawer,
+  Hidden,
+  IconButton,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  Icon,
+  Toolbar,
+  Typography
+} from '@material-ui/core'
 
-import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
+import {
+  Info as InfoIcon,
+  Inbox as InboxIcon,
+  Mail as MailIcon,
+  Menu as MenuIcon,
+} from '@material-ui/icons'
+
 import { makeStyles, useTheme } from "@material-ui/core/styles";
+
 import { Switch, Route, Link, BrowserRouter } from "react-router-dom";
-import logo from './flame-1267.png';
+
+// import logo from './flame-1267.png';
 import './second.css';
 
-import table from './branch1';
-import table2 from './branch2';
-import table3 from './branch3';
-import alltable from './allBranch'
+import allTable from './allBranch'
+
+import Branch from './Branch'
+
+const branches = [
+  {
+    branchName: 'ซีคอนบางแค',
+    path: '/seacon-bangkae',
+  },
+  {
+    branchName: 'เอสพลานาด',
+    path: '/esplanade',
+  },
+  {
+    branchName: 'อุดรธานี',
+    path: '/udonthani',
+  },
+]
 
 const drawerWidth = 240;
 
@@ -66,9 +88,6 @@ const useStyles = makeStyles(theme => ({
     padding: theme.spacing(3),
   }
 }));
-
-console.log(localStorage.getItem('token'));
-
 function ResponsiveDrawer(props) {
   const { container } = props;
   const classes = useStyles();
@@ -85,29 +104,36 @@ function ResponsiveDrawer(props) {
       <Divider />
       <label className="lab">ยอดขายตามสาขา</label>
       <List>
-        {["กรุงเทพ", "ศาลายา", "กัมพูชา"].map((text, index) => (
-          <ListItem button key={text} component={Link} to={"/" + text}>
-            <ListItemIcon>
-              {index % 2 === 0 ? <StoreIcon /> : <StoreIcon />}
-            </ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
+        {
+          branches.map((branch, index) => (
+            <ListItem
+              key={index}
+              to={'/pages' + branch.path}
+              button
+              component={Link}
+            >
+              <ListItemIcon>
+                {index % 2 === 0 ? <InboxIcon /> : <InboxIcon />}
+              </ListItemIcon>
+              <ListItemText primary={branch.branchName} />
+            </ListItem>
+          ))
+        }
       </List>
       <Divider />
         <label className="lab2" >ผลรวมยอดขาย</label>
           <List>
-            {["ผลรวมยอดขาย"].map((text, index) => (
-              <ListItem button key={text} component={Link} to={"/" + text}>
-                <ListItemIcon>{index % 2 === 0 ? <ReceiptIcon /> : <ReceiptIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItem>
-            ))}
+            <ListItem button component={Link} to={'/pages/all-branches'}>
+              <ListItemIcon>
+                <MailIcon />
+              </ListItemIcon>
+              <ListItemText primary="ผลรวมยอดขาย" />
+            </ListItem>
           </List>
     </div>
   );
 
+  // render
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -120,7 +146,7 @@ function ResponsiveDrawer(props) {
             onClick={handleDrawerToggle}
             className={classes.menuButton}
           >
-          <MenuIcon />
+            <MenuIcon />
           </IconButton>
           <Typography variant="h4" noWrap>
             <span>Mana Outlet</span>
@@ -164,11 +190,28 @@ function ResponsiveDrawer(props) {
           <div className={classes.toolbar} />
 
           <Switch>
-            <Route exact path="/" render={() => <div>  </div>} />
-            <Route path='/กรุงเทพ' component ={table} />
-            <Route path='/ศาลายา' component ={table2} />
-            <Route path='/กัมพูชา' component ={table3} />
-            <Route path="/ผลรวมยอดขาย" component = {alltable} />
+            <Route
+              exact path="/pages"
+              render={() => (
+                <div style={{ textAlign: 'center' }}>
+                  <InfoIcon fontSize="large" style={{ marginBottom: '1rem' }}/>
+                  <h4>กรุณาเลือกรายการ จากเมนูทางด้านซ้าย</h4>
+                </div>
+              )}
+            />
+            <Route path="/pages/all-branches" component={allTable} />
+            {
+              branches.map((branch, index) => (
+                <Route
+                  key={index}
+                  path={'/pages' + branch.path}
+                  render={() => (
+                    <Branch branchName={branch.branchName}/>
+                  )}
+                />
+              ))
+            }
+
           </Switch>
 
         </main>
