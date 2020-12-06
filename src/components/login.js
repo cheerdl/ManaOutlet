@@ -35,7 +35,7 @@ export default function Login() {
       const token = result.data.token;
       localStorage.setItem('token', token);
       console.log(token);
-      goTo('/secondPage')();
+      goTo('/pages')();
     }).catch((error) => {
       console.log(error)
       alert("ชื่อผู้ใช้หรือรหัสผ่านผิด กรุณากรอกใหม่")
