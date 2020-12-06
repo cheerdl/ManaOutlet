@@ -1,16 +1,20 @@
 import logo from './flame-1267.png';
 import './login.css';
 import React, { useState } from "react";
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
-//import history from './../history';
-import { Link } from 'react-router-dom';
+
+import {
+  Button,
+  Form,
+  Spinner,
+} from 'react-bootstrap'
+
 import axios from 'axios';
 import useRouter from '../hooks/useRouter';
 
 export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false)
 
   const { goTo } = useRouter();
 
@@ -23,6 +27,8 @@ export default function Login() {
   }
 
   function toRequestToken(){
+    setIsLoading(true)
+
     var uname = document.getElementById("username").value
     var pass = document.getElementById("password").value
     console.log(uname)
@@ -34,10 +40,12 @@ export default function Login() {
     }).then((result) => {
       const token = result.data.token;
       localStorage.setItem('token', token);
-      console.log(token);
+
       goTo('/pages')();
     }).catch((error) => {
       console.log(error)
+
+      setIsLoading(false)
       alert("ชื่อผู้ใช้หรือรหัสผ่านผิด กรุณากรอกใหม่")
     })
   }
@@ -82,8 +90,24 @@ export default function Login() {
                   <p></p>
                 </Form.Group>
 
-                  <Button className="Button1" block size="lg" type="submit" onClick={toRequestToken}>
-                    LOGIN
+                  <Button
+                    className="Button1"
+                    block size="lg"
+                    type="submit"
+                    onClick={toRequestToken}
+                    disabled={isLoading}
+                  >
+                    {
+                      isLoading ? (
+                        <Spinner
+                          as="span"
+                          animation="border"
+                          size="sm"
+                          role="status"
+                          aria-hidden="true"
+                        />
+                      ) : ('Login')
+                    }
                   </Button>
 
                 </Form>
