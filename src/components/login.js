@@ -48,14 +48,14 @@ export default function Login() {
   return (
   <div className="back">
 
-    <div class="one">
+    <div className="one">
       <p className="Mname">Mana Outlet</p>
       <p className="SaleText">Sales report dashboard</p>
     </div>
 
-    <div class="box">
+    <div className="box">
 
-      <div class="one">
+      <div className="one">
           <div className="Login">
 
               <p>Login</p>
@@ -92,7 +92,7 @@ export default function Login() {
                 </Form>
           </div>
         </div>
-        <div class="two">
+        <div className="two">
           <img src={logo} alt="Logo" />
         </div>
     </div>

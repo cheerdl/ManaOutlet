@@ -123,7 +123,7 @@ function ResponsiveDrawer(props) {
           <MenuIcon />
           </IconButton>
           <Typography variant="h4" noWrap>
-            <text>Mana Outlet</text>
+            <span>Mana Outlet</span>
           </Typography>
         </Toolbar>
       </AppBar>

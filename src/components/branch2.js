@@ -106,8 +106,8 @@ class List extends Component {
       return (
         <div>
           <h3 style={{fontWeight: "bold"}}>สาขา ศาลายา</h3>
-          <table class="table">
-            <thead class="thead-dark">
+          <table className="table">
+            <thead className="thead-dark">
               <th>วันที่</th>
               <th>เงินสด</th>
               <th>เงินโอน</th>

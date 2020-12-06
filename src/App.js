@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 // Scripts
-import 'jquery/dist/jquery.min.js';
+// import 'jquery/dist/jquery.min.js';
 import 'popper.js/dist/popper.min.js';
 import 'bootstrap/dist/js/bootstrap.min.js';
 // Styles
@@ -28,7 +28,7 @@ function App() {
       <Route path="/ศาลายา" component={branch2} />
       <Route path="/กัมพูชา" component={branch3} />
       <Route path="/ผลรวมยอดขาย" component={allBranch} />
-      </Switch>
+    </Switch>
 </div>
 </Router>
 
