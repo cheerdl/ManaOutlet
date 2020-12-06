@@ -1,0 +1,35 @@
+/* .tab1{
+background-color: #14274E;
+padding-top: 10px;
+height: 70px;
+}
+.Mana{
+  font-size: 35px;
+  font-weight: bold;
+  color: #FFFFFF;
+  padding-left: 40px;
+  margin-top: 10px;
+  width: 350px;
+  height: 25px;
+} */
+.lab{
+  color: #FFFFFF;
+  font-size: 24px;
+  font-weight: bold;
+  width: 99%;
+  background-color: #14274E;
+ padding-left: 26px;
+  font-family: 'Montserrat';
+  margin-top: 2px;
+}
+.lab2{
+  color: #FFFFFF;
+  width: 99%;
+  font-size: 24px;
+  font-weight: bold;
+  background-color: #14274E;
+  padding-right: 29px;
+  padding-left: 36px;
+  font-family: 'Montserrat';
+  margin-top: 2px;
+}

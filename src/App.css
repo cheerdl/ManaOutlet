@@ -1,0 +1,111 @@
+.background {
+  background-color: #F1F6F9;
+  padding-top: 10px;
+  height: 510px;
+}
+  .Mname{
+  font-size: 50px;
+  font-weight: bold;
+  color: #14274E;
+  padding-left: 160px;
+  padding-top: 0px;
+  width: 350px;
+  height: 25px;
+}
+.SaleText{
+  color: #14274E;
+  font-style: italic;
+  font-family: itaric;
+  font-size: 39px;
+  padding-left: 160px;
+  width:370px;
+  display: block;
+
+}
+
+.background img{
+  height: 560px;
+  width: 560px;
+  padding-left: 800px;
+   margin-top: -185px;
+}
+
+
+  .Login {
+    margin-top: -400px;
+    margin-left: 190px;
+    border: 1px solid;
+    border-radius: 10px;
+    width: 280px;
+    height: 300px;
+    background-color: #FFFFFF;
+  }
+
+  .Login form {
+    margin-left: 30px;
+    font-size: 14px;
+    font-style: itaric;
+  }
+  .Login p{
+    padding-left: 120px;
+    padding-top: 20px;
+    font-weight: bold;
+    color: #14274E;
+    font-size: 20px;
+
+  }
+.Button1{
+  width: 80px;
+  margin-bottom: 20px;
+  height: 30px;
+  font-size: 13px;
+  background-color: #14274E;
+  margin-left: 75px;
+  border-radius:8px;
+  margin-top: -200px;
+
+}
+.modal-lable{
+  width: 40px;
+  display:inline-block;
+
+}
+.test{
+color: #FFFFFF;
+}
+
+
+/* .App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+} */
+
+/* @keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+} */
