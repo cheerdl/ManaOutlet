@@ -85,7 +85,7 @@ function ResponsiveDrawer(props) {
       <Divider />
       <label className="lab">ยอดขายตามสาขา</label>
       <List>
-        {["กรุงเทพ", "ศาลายา", "กัมพูชา"].map((text, index) => (
+        {["ซีคอนบางแค", "เอสพลานาด", "อุดรธานี"].map((text, index) => (
           <ListItem button key={text} component={Link} to={"/" + text}>
             <ListItemIcon>
               {index % 2 === 0 ? <StoreIcon /> : <StoreIcon />}
@@ -165,9 +165,9 @@ function ResponsiveDrawer(props) {
 
           <Switch>
             <Route exact path="/" render={() => <div>  </div>} />
-            <Route path='/กรุงเทพ' component ={table} />
-            <Route path='/ศาลายา' component ={table2} />
-            <Route path='/กัมพูชา' component ={table3} />
+            <Route path='/ซีคอนบางแค' component ={table} />
+            <Route path='/เอสพลานาด' component ={table2} />
+            <Route path='/อุดรธานี' component ={table3} />
             <Route path="/ผลรวมยอดขาย" component = {alltable} />
           </Switch>
 

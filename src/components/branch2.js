@@ -105,7 +105,7 @@ class List extends Component {
       let modalData = this.state.brochure[requiredItem];
       return (
         <div>
-          <h3 style={{fontWeight: "bold"}}>สาขา ศาลายา</h3>
+          <h3 style={{fontWeight: "bold"}}>สาขา เอสพลานาด</h3>
           <table class="table">
             <thead class="thead-dark">
               <th>วันที่</th>

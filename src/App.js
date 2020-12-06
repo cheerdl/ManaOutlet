@@ -24,9 +24,9 @@ function App() {
       <Route exact path='/' component ={Login} />
       <Route path='/login' component ={Login} />
       <Route path="/secondPage" component={Second} />
-      <Route path="/กรุงเทพ" component={branch1} />
-      <Route path="/ศาลายา" component={branch2} />
-      <Route path="/กัมพูชา" component={branch3} />
+      <Route path="/ซีคอนบางแค" component={branch1} />
+      <Route path="/เอสพลานาด" component={branch2} />
+      <Route path="/อุดรธานี" component={branch3} />
       <Route path="/ผลรวมยอดขาย" component={allBranch} />
       </Switch>
 </div>
