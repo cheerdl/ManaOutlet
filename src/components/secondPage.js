@@ -11,12 +11,8 @@ import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-
+import MailIcon from "@material-ui/icons/Mail";
 import MenuIcon from "@material-ui/icons/Menu";
-import StorefrontIcon from '@material-ui/icons/Storefront';
-import StoreIcon from '@material-ui/icons/Store';
-import ReceiptIcon from '@material-ui/icons/Receipt';
-
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
@@ -45,7 +41,7 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: "#14274E",
     marginLeft: drawerWidth,
     [theme.breakpoints.up("sm")]: {
-      width: `calc(100% - ${drawerWidth}px)`
+      width: 1200
     }
   },
   menuButton: {
@@ -67,7 +63,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-console.log(localStorage.getItem('token'));
+// console.log(localStorage.getItem('token'));
 
 function ResponsiveDrawer(props) {
   const { container } = props;
@@ -85,10 +81,10 @@ function ResponsiveDrawer(props) {
       <Divider />
       <label className="lab">ยอดขายตามสาขา</label>
       <List>
-        {["ซีคอนบางแค", "เอสพลานาด", "อุดรธานี"].map((text, index) => (
+        {["สาขา 1", "สาขา 2", "สาขา 3"].map((text, index) => (
           <ListItem button key={text} component={Link} to={"/" + text}>
             <ListItemIcon>
-              {index % 2 === 0 ? <StoreIcon /> : <StoreIcon />}
+              {index % 2 === 0 ? <InboxIcon /> : <InboxIcon />}
             </ListItemIcon>
             <ListItemText primary={text} />
           </ListItem>
@@ -99,7 +95,7 @@ function ResponsiveDrawer(props) {
           <List>
             {["ผลรวมยอดขาย"].map((text, index) => (
               <ListItem button key={text} component={Link} to={"/" + text}>
-                <ListItemIcon>{index % 2 === 0 ? <ReceiptIcon /> : <ReceiptIcon />}
+                <ListItemIcon>{index % 2 === 0 ? <MailIcon /> : <MailIcon />}
                 </ListItemIcon>
                 <ListItemText primary={text} />
               </ListItem>
@@ -120,7 +116,7 @@ function ResponsiveDrawer(props) {
             onClick={handleDrawerToggle}
             className={classes.menuButton}
           >
-          <MenuIcon />
+            <MenuIcon />
           </IconButton>
           <Typography variant="h4" noWrap>
             <text>Mana Outlet</text>
@@ -165,9 +161,9 @@ function ResponsiveDrawer(props) {
 
           <Switch>
             <Route exact path="/" render={() => <div>  </div>} />
-            <Route path='/ซีคอนบางแค' component ={table} />
-            <Route path='/เอสพลานาด' component ={table2} />
-            <Route path='/อุดรธานี' component ={table3} />
+            <Route path='/สาขา 1' component ={table} />
+            <Route path='/สาขา 2' component ={table2} />
+            <Route path='/สาขา 3' component ={table3} />
             <Route path="/ผลรวมยอดขาย" component = {alltable} />
           </Switch>
 

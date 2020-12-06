@@ -6,7 +6,6 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import axios from 'axios';
-import Spinner from 'react-bootstrap/Spinner'
 class List extends Component {
   constructor(props) {
     super(props);
@@ -41,7 +40,8 @@ class List extends Component {
           transfer: result.data.data[i].transferSum,
           all: 0,
           allpos: result.data.data[i].posSum,
-          diff: 0
+          diff: 0,
+          id: result.data.data[i].transacSumId
         }
         brochure.push(data);
       }
@@ -62,7 +62,24 @@ class List extends Component {
     const requiredItem = this.state.requiredItem;
     let tempbrochure = this.state.brochure;
     tempbrochure[requiredItem] = item;
+    console.log(tempbrochure[requiredItem]);
     this.setState({ brochure: tempbrochure });
+    //window.location.reload();
+    axios({
+      url: 'https://billbillbot.herokuapp.com/api/v1/bill',
+      method: 'PUT',
+      data: {
+        "transacSumId": tempbrochure[requiredItem].id,
+        "transferSum": tempbrochure[requiredItem].transfer,
+        "cashSum": tempbrochure[requiredItem].cash,
+        "posSum": tempbrochure[requiredItem].allpos
+      },
+      headers: {
+        Authorization: 'Bearer '+localStorage.getItem("token")
+      }
+    }).then((result) => {
+      console.log(result)
+    })
   }
 
   deleteItem(index) {
@@ -74,9 +91,7 @@ class List extends Component {
   render() {
     const {isLoading} = this.state;
     if(isLoading){
-      return<Spinner animation="border" role="status" style={{color: "grey", marginLeft: 500, marginTop: 200, width: 80, height: 80}}>
-            <span className="sr-only">Loading...</span>
-            </Spinner>
+      return (<p>Loading</p>)
     }
     else{
       const brochure = this.state.brochure.map((item, index) => {
@@ -105,7 +120,7 @@ class List extends Component {
       let modalData = this.state.brochure[requiredItem];
       return (
         <div>
-          <h3 style={{fontWeight: "bold"}}>สาขา ซีคอนบางแค</h3>
+          <h3 style={{fontWeight: "bold"}}>สาขา 1</h3>
           <table class="table">
             <thead class="thead-dark">
               <th>วันที่</th>
@@ -122,11 +137,12 @@ class List extends Component {
           </table>
           <Modal
             date={modalData.date}
-            cash={modalData.cash}
+            cash={Number.parseInt(modalData.cash)}
             transfer={modalData.transfer}
             all={modalData.all}
             allpos={modalData.allpos}
             diff={modalData.diff}
+            id={modalData.id}
             saveModalDetails={this.saveModalDetails}
           />
         </div>
