@@ -225,7 +225,7 @@ function ResponsiveDrawer(props) {
                   key={index}
                   path={'/pages' + branch.path}
                   render={() => (
-                    <Branch branchName={branch.branchName}/>
+                    <Branch branchName={branch.branchName} branchNameTH={branch.branchNameTH}/>
                   )}
                 />
               ))
