@@ -119,7 +119,7 @@ function ResponsiveDrawer(props) {
               <ListItemIcon>
                 {index % 2 === 0 ? <InboxIcon /> : <InboxIcon />}
               </ListItemIcon>
-              <ListItemText primary={branch.branchName} />
+              <ListItemText primary={branch.branchNameTH} />
             </ListItem>
           ))
         }
