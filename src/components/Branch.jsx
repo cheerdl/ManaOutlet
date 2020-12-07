@@ -54,7 +54,7 @@ const Branch = (props) => {
       data,
     }).then(res => res.data)
 
-    setRowLoading(false)
+    // setRowLoading(false)
     window.location.reload()
   }
 
@@ -81,14 +81,22 @@ const Branch = (props) => {
             data-toggle="modal"
             data-target="#exampleModal"
             onClick={() => replaceModalItem(item, index)}
-            disabled={isRowLoading && editingRow === index}
+            disabled={ isRowLoading && editingRow === index }
           >
-              แก้ไข
+              { isRowLoading && editingRow === index ? 'กำลังบันทึก...' : 'แก้ไข' }
           </button>
         </td>
       </tr>
 
-      { isRowLoading && editingRow === index && (<LinearProgress/>) }
+      {
+        isRowLoading && editingRow === index && (
+          <tr>
+            <td style={{ padding: 0 }} colspan={7}>
+              <LinearProgress/>
+            </td>
+          </tr>
+        )
+      }
     </>
   ))
 

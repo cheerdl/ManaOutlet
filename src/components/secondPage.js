@@ -135,7 +135,11 @@ function ResponsiveDrawer(props) {
       <Divider />
         <label className="lab2" >อื่น ๆ</label>
           <List>
-            <ListItem button component="a" href="https://app.powerbi.com/view?r=eyJrIjoiNjAzMWE3M2QtNGRlZC00MWU4LTg0MjktMjUyMTcwMmUyZTVhIiwidCI6IjliYzU4NWY5LWE4YjgtNDMxYy05MDEzLWVmYTdiMmI0MGNkZiIsImMiOjEwfQ%3D%3D">
+            <ListItem
+              button component="a"
+              href="https://app.powerbi.com/view?r=eyJrIjoiNjAzMWE3M2QtNGRlZC00MWU4LTg0MjktMjUyMTcwMmUyZTVhIiwidCI6IjliYzU4NWY5LWE4YjgtNDMxYy05MDEzLWVmYTdiMmI0MGNkZiIsImMiOjEwfQ%3D%3D"
+              target="_blank"
+            >
               <ListItemIcon>
                 <DashboardIcon />
               </ListItemIcon>
