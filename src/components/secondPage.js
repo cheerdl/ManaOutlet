@@ -21,7 +21,8 @@ import {
 import {
   Info as InfoIcon,
   Inbox as InboxIcon,
-  Mail as MailIcon,
+  Toc as TocIcon,
+  Dashboard as DashboardIcon,
   Menu as MenuIcon,
 } from '@material-ui/icons'
 
@@ -125,9 +126,20 @@ function ResponsiveDrawer(props) {
           <List>
             <ListItem button component={Link} to={'/pages/all-branches'}>
               <ListItemIcon>
-                <MailIcon />
+                <TocIcon />
               </ListItemIcon>
               <ListItemText primary="ผลรวมยอดขาย" />
+            </ListItem>
+          </List>
+
+      <Divider />
+        <label className="lab2" >อื่น ๆ</label>
+          <List>
+            <ListItem button component="a" href="https://app.powerbi.com/view?r=eyJrIjoiNjAzMWE3M2QtNGRlZC00MWU4LTg0MjktMjUyMTcwMmUyZTVhIiwidCI6IjliYzU4NWY5LWE4YjgtNDMxYy05MDEzLWVmYTdiMmI0MGNkZiIsImMiOjEwfQ%3D%3D">
+              <ListItemIcon>
+                <DashboardIcon />
+              </ListItemIcon>
+              <ListItemText primary="Dashboard" />
             </ListItem>
           </List>
     </div>
