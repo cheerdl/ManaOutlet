@@ -39,15 +39,18 @@ import Branch from './Branch'
 
 const branches = [
   {
-    branchName: 'ซีคอนบางแค',
+    branchName: 'Bangkok',
+    branchNameTH: 'ซีคอนบางแค',
     path: '/seacon-bangkae',
   },
   {
-    branchName: 'เอสพลานาด',
+    branchName: 'Bangkok',
+    branchNameTH: 'เอสพลานาด',
     path: '/esplanade',
   },
   {
-    branchName: 'อุดรธานี',
+    branchName: 'Bangkok',
+    branchNameTH: 'อุดรธานี',
     path: '/udonthani',
   },
 ]
