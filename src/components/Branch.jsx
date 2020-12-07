@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
-import Modal from './modal.js';
+import axios from 'axios'
 
 import {
   CircularProgress,
   TableCell,
 } from '@material-ui/core'
 
-import { withStyles, makeStyles } from '@material-ui/core/styles';
-import axios from 'axios';
+import { withStyles, makeStyles } from '@material-ui/core/styles'
+
+import Modal from './modal.js';
+import { commaNumber as cm, formatDate as fd } from '../libs/utilities'
 
 class List extends Component {
   state = {
@@ -91,25 +93,40 @@ class List extends Component {
     this.setState({ brochure: tempBrochure });
   }
 
+  calcTotal = item => Math.abs(Number(item.cash) + Number(item.cash))
+  calcDiff = item => Number(item.cash) + Number(item.transfer) - Number(item.allpos)
+
   render() {
     const {isLoading} = this.state;
     if (isLoading) {
       return (<CircularProgress/>)
-    }
-    else{
+    } else {
       const brochure = this.state.brochure.map((item, index) => {
         return (
           <tr key={index}>
-            <td>{item.date}</td>
-            <td>{item.cash}</td>
-            <td>{item.transfer}</td>
-            <td>{Math.abs(parseInt(item.cash)+parseInt(item.transfer))}</td>
-            <td>{item.allpos}</td>
-            <td>{Math.abs(parseInt(item.cash)+parseInt(item.transfer) - parseInt(item.allpos))}</td>
-            <td><button className="btn btn-primary" data-toggle="modal" data-target="#exampleModal" onClick={() => this.replaceModalItem(index)}>แก้ไข</button> {" "}</td>
+            <td>{ fd(item.date) }</td>
+            <td>{ cm(item.cash) }</td>
+            <td>{ cm(item.transfer) }</td>
+
+            <td>{ cm(this.calcTotal(item)) }</td>
+            <td>{ cm(item.allpos) }</td>
+            <td style={{
+              backgroundColor: Math.abs(this.calcDiff(item)) > 1000 ? '#e46868' : 'inherit',
+              fontWeight: Math.abs(this.calcDiff(item)) > 1000 ? 'bold' : 'inherit',
+            }}>{ cm(this.calcDiff(item)) }</td>
+            <td style={{ padding: '5px 10px' }}>
+              <button
+                className="btn btn-primary"
+                data-toggle="modal"
+                data-target="#exampleModal"
+                onClick={() => this.replaceModalItem(index)}>
+                  แก้ไข
+              </button>
+            </td>
           </tr>
         )
       });
+
       const StyledTableCell = withStyles((theme) => ({
         head: {
           backgroundColor: theme.palette.common.black,
