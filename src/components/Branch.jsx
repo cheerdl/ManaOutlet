@@ -9,13 +9,14 @@ import {
 import { withStyles, makeStyles } from '@material-ui/core/styles'
 
 import Modal from './modal.js';
-import { commaNumber as cm, formatDate as fd } from '../libs/utilities'
+import { commaNumber as cm, formatDate as fd } from '../utils'
+import { getToken } from '../utils/token'
 
 class List extends Component {
   state = {
     isLoading: true,
     requiredItem: 0,
-    brochure: []
+    brochure: [],
   }
 
   constructor(props) {
@@ -31,10 +32,10 @@ class List extends Component {
   fetchData() {
     axios.get('https://billbillbot.herokuapp.com/api/v1/bill', {
       headers: {
-        Authorization: "Bearer "+localStorage.getItem("token")
+        Authorization: getToken(),
       },
       params: {
-        branch: "Bangkok"
+        branch: 'Bangkok',
       }
     }).then((result) => {
       let brochure = this.state.brochure;
@@ -79,7 +80,7 @@ class List extends Component {
         "posSum": tempbrochure[requiredItem].allpos
       },
       headers: {
-        Authorization: 'Bearer '+localStorage.getItem("token")
+        Authorization: getToken(),
       }
     }).then((result) => {
       window.location.reload()
@@ -93,7 +94,7 @@ class List extends Component {
     this.setState({ brochure: tempBrochure });
   }
 
-  calcTotal = item => Math.abs(Number(item.cash) + Number(item.cash))
+  calcTotal = item => Math.abs(Number(item.cash) + Number(item.transfer))
   calcDiff = item => Number(item.cash) + Number(item.transfer) - Number(item.allpos)
 
   render() {
@@ -110,6 +111,7 @@ class List extends Component {
 
             <td>{ cm(this.calcTotal(item)) }</td>
             <td>{ cm(item.allpos) }</td>
+
             <td style={{
               backgroundColor: Math.abs(this.calcDiff(item)) > 1000 ? '#e46868' : 'inherit',
               fontWeight: Math.abs(this.calcDiff(item)) > 1000 ? 'bold' : 'inherit',
