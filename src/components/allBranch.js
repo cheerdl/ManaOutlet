@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 
 import { withStyles, makeStyles } from '@material-ui/core/styles'
+import { LinearProgress } from '@material-ui/core'
 import Table from '@material-ui/core/Table'
 import TableBody from '@material-ui/core/TableBody'
 import TableCell from '@material-ui/core/TableCell'
@@ -74,6 +75,7 @@ const useStyles = makeStyles({
 
 export default function CustomizedTables() {
   const classes = useStyles()
+  const [isLoading, setLoading] = useState(true)
   const [transactions, setTransactions] = useState([])
 
   useEffect(() => {
@@ -81,6 +83,8 @@ export default function CustomizedTables() {
   }, [])
 
   async function fetchData() {
+    setLoading(true)
+
     const result = await axios({
       url: 'https://billbillbot.herokuapp.com/api/v1/bill/total',
       headers: {
@@ -89,6 +93,7 @@ export default function CustomizedTables() {
     }).then((res) => res.data)
 
     setTransactions(result.data)
+    setLoading(false)
   }
 
   const calcDiff = ({ posSum, cashSum, transferSum }) => Number(posSum) - (Number(cashSum) + Number(transferSum))
@@ -121,6 +126,7 @@ export default function CustomizedTables() {
             ))}
           </TableBody>
         </Table>
+        { isLoading && (<LinearProgress/>) }
       </TableContainer>
     </div>
   );
